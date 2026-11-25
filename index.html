@@ -158,10 +158,7 @@ button:hover{background:#a3667a}
     <h2>Подтверждение</h2>
     <p class="sub">Пожалуйста, подтвердите присутствие<br>до 20 декабря 2026 года</p>
     <!-- ФОРМА ДЛЯ FORMHOOK -->
-    <form id="rsvp" data-formhook data-sitekey="01M823DDDGTM0Q1VVF32C8YF0B" method="POST">
-      
-      <!-- Поля FormSubmit (_subject, _captcha) мы убрали, они больше не нужны -->
-
+    <form id="rsvp" data-formhook data-sitekey="ВАШ_КЛЮЧ_ИЗ_FORMHOOK" method="POST">
       <input type="text" name="name" placeholder="Ваше имя и фамилия" required>
       
       <select name="attendance" required>
@@ -169,17 +166,9 @@ button:hover{background:#a3667a}
         <option value="yes">Да, обязательно буду</option>
         <option value="no">К сожалению, не смогу</option>
       </select>
-
-      <select name="drinks" id="drinksSelect">
-        <option value="" disabled selected>Предпочтения по напиткам</option>
-        <option value="wine">Вино</option>
-        <option value="champagne">Шампанское</option>
-        <option value="vodka">Крепкий алкоголь</option>
-        <option value="no-alcohol">Безалкогольные</option>
-        <option value="other">Другое</option>
-      </select>
-
-      <input type="text" name="drinks_other" id="drinksOther" placeholder="Напишите Ваш вариант" hidden>
+    
+      <!-- Оставили только одно текстовое поле для пожеланий -->
+      <input type="text" name="drinks" placeholder="Предпочтения по напиткам (например: вино, без алкоголя)">
       
       <button type="submit">Подтвердить</button>
       
