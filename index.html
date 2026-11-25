@@ -158,7 +158,10 @@ button:hover{background:#a3667a}
     <h2>Подтверждение</h2>
     <p class="sub">Пожалуйста, подтвердите присутствие<br>до 20 декабря 2026 года</p>
     <!-- ФОРМА ДЛЯ FORMHOOK -->
-    <form id="rsvp" data-formhook data-sitekey="ВАШ_КЛЮЧ_ИЗ_FORMHOOK" method="POST">
+    <form id="rsvp" data-formhook data-sitekey="01M823DDDGTM0Q1VVF32C8YF0B" method="POST">
+      
+      <!-- Поля FormSubmit (_subject, _captcha) мы убрали, они больше не нужны -->
+
       <input type="text" name="name" placeholder="Ваше имя и фамилия" required>
       
       <select name="attendance" required>
@@ -166,9 +169,8 @@ button:hover{background:#a3667a}
         <option value="yes">Да, обязательно буду</option>
         <option value="no">К сожалению, не смогу</option>
       </select>
-    
-      <!-- Оставили только одно текстовое поле для пожеланий -->
-      <input type="text" name="drinks" placeholder="Предпочтения по напиткам (например: вино, без алкоголя)">
+
+      <input type="text" name="drinks" id="drinks" placeholder="Какие напитки Вы предпочитаете?">
       
       <button type="submit">Подтвердить</button>
       
@@ -206,14 +208,11 @@ function tick(){
   document.getElementById('minutes').textContent=pad(Math.floor(d%36e5/6e4));
   document.getElementById('seconds').textContent=pad(Math.floor(d%6e4/1e3));
 }
-const drinks=document.querySelector('select[name=drinks]'),other=document.getElementById('drinksOther');
-drinks.addEventListener('change',()=>{const o=drinks.value==='other';other.hidden=!o;other.required=o;if(o)other.focus();});
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 </script>
 <script>
-
-
+  // Обработка успешной отправки формы
   const rsvpForm = document.getElementById('rsvp');
   const statusText = document.getElementById('status');
 
@@ -221,7 +220,7 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
     rsvpForm.addEventListener('formhook:success', function() {
       statusText.textContent = 'Спасибо! Ваш ответ успешно отправлен.';
       statusText.style.color = 'var(--green)';
-      rsvpForm.reset(); 
+      rsvpForm.reset();
     });
 
     rsvpForm.addEventListener('formhook:error', function() {
