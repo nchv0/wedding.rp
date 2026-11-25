@@ -214,16 +214,14 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 <script>
 
 
-  // Обработка успешной отправки формы
   const rsvpForm = document.getElementById('rsvp');
   const statusText = document.getElementById('status');
 
   if (rsvpForm && statusText) {
     rsvpForm.addEventListener('formhook:success', function() {
       statusText.textContent = 'Спасибо! Ваш ответ успешно отправлен.';
-      statusText.style.color = 'var(--green)'; // Используем ваш зеленый цвет
+      statusText.style.color = 'var(--green)';
       rsvpForm.reset(); 
-      if (drinksOther) drinksOther.hidden = true; 
     });
 
     rsvpForm.addEventListener('formhook:error', function() {
